@@ -25,3 +25,17 @@ this is the ledger-cli format:
 2021/08/12 * Expenses:Food:Supermarket
 	Expenses:Food:Supermarket  €1,36
 	Assets:Bank:Checking  -€1,36
+
+# Errors
+
+add errors with no arguments
+
+# Requirements
+
+-todo write down the exact requirements
+
+
+## Todos
+
+- put io outside
+- rewrite the config into a more clear format
