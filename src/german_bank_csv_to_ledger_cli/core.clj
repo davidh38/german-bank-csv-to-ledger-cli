@@ -62,10 +62,9 @@
    ;(delete-last-line)
     ((fn [lst] (take (- (count lst) 1) lst)))
    ;(delete-last-line) ; last line is computed whole
-   (println)
    (map convert-to-ledger-format)
    (reduce str)
    (println)))
 
-(-main "/home/dave/Downloads/Kontoumsaetze_300_812603900_20220101_110519.csv")
+(-main "/home/dave/Downloads/Kontoumsaetze_300_812603900_20211230_142855.csv")
 ;(println (convert-to-ledger-format ["30.12.2021" "30.12.2021" "Kartenzahlung" "" "NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1223"  "" "" "" "-20,20"  "EUR"]))
