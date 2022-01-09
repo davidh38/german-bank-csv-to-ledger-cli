@@ -44,7 +44,7 @@
 (defn put-in-euro-sign [amount]
   (if (str/starts-with? amount "-") (str "-" "€" (subs amount 1)) (str "€" amount)))
 
-(defn convert-to-ledger-format [entry]
+(defn convert-to-ledger-format [conf entry]
   ;
   (apply str (str/join "/" (reverse (str/split (first entry) #"\.")))  " * " (determine-recipient entry) "\n"
          "\t" (money-category entry)  "  " (put-in-euro-sign (invert-string-amount (determine-amount entry))) "\n"
@@ -60,11 +60,9 @@
    (partition-by #(str/starts-with? (first %) "Buchungstag"))
    (last)
    ;(delete-last-line)
-    ((fn [lst] (take (- (count lst) 1) lst)))
+   ((fn [lst] (take (- (count lst) 1) lst)))
    ;(delete-last-line) ; last line is computed whole
-   (map convert-to-ledger-format)
+   (map (partial convert-to-ledger-format myconf/test))
    (reduce str)
    (println)))
 
-(-main "/home/dave/Downloads/Kontoumsaetze_300_812603900_20211230_142855.csv")
-;(println (convert-to-ledger-format ["30.12.2021" "30.12.2021" "Kartenzahlung" "" "NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1223"  "" "" "" "-20,20"  "EUR"]))
