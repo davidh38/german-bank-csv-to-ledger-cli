@@ -3,6 +3,7 @@
             [clojure.java.io :as io]
             [clojure.string :as str]
             [german-bank-csv-to-ledger-cli.conf :as myconf]) (:gen-class))
+
 (defn take-csv
   "Takes file name and reads data."
   [fname]
@@ -38,9 +39,8 @@
      (build-entry-for-ledger entry recipient))))
 
 (defn determine-recipient [entry]
-  "" "in case of paypal as auftraggeber or empty auftraggeber return betreff entry as recipient
-     in all other cases return auftraggeber as recipient
-" ""
+  "in case of paypal as auftraggeber or empty auftraggeber return betreff entry as recipient
+     in all other cases return auftraggeber as recipient"
 
   (cond
     (= (get entry 3) "PayPal (Europe) S.a.r.l. et Cie., S.C.A.") (get entry 4)
@@ -54,10 +54,10 @@
   (println "------####### Starting program #####------")
   (->>
    (take-csv (first args))
-   ;partition-by uses first, because every line is a list
+   ;partition-by uses first, because every transaction is a list
    (partition-by #(str/starts-with? (first %) "Buchungstag"))
    (last)
-   ((fn [lst] (take (- (count lst) 1) lst))) ;delete last line
+   ((fn [lst] (take (- (count lst) 1) lst))) ;delete last line, because it is no valid transaction
    (map (partial convert-to-ledger-format myconf/recipient-to-moneycategory))
    (reduce str)
    (println)))

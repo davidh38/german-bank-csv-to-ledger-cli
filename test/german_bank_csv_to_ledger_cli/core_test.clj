@@ -11,7 +11,6 @@
 (convert-to-ledger-format myconf/recipient-to-moneycategory ["30.12.2021" "30.12.2021" "Kartenzahlung" "" "NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1523"  "" "" "" "-20,20"  "EUR"])
       )))
 
-
 (deftest test-convert-to-ledger-format-with-betreff
   (testing "FIXME, betreff")
   (is (= (convert-to-ledger-format myconf/recipient-to-moneycategory ["30.12.2021" "30.12.2021" "Kartenzahlung" "" "NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1523"  "" "" "" "-20,20"  "EUR"])
@@ -49,4 +48,3 @@
   (is (= (determine-recipient ["29.12.2021" "29.12.2021" "SEPA-Lastschrift von" "PayPal (Europe) S.a.r.l. et Cie., S.C.A." ". Spotify Limited, Ihr Einkauf bei Spotify Limited" "DE88500700102175526303" "DEUTDEFHXXX" "1017624592854  PAYPAL" "5QKJ223MTLWAL" "LU96ZZZ0000000000000000058" "" "" "" "" "" "-9,99" "" "EUR"])
          ". Spotify Limited, Ihr Einkauf bei Spotify Limited")))
 
-;30.12.2021;30.12.2021;"Kartenzahlung";;ALNATURA FIL. 118//DUESSELDORF/DE 29-12-2021T09:28:31 Folgenr. 07 Verfalld. 1223;;;;;;;;;;;-1,14;;EUR
