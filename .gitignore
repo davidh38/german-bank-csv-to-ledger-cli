@@ -12,3 +12,6 @@ pom.xml.asc
 .hgignore
 .hg/
 /src/german_bank_csv_to_ledger_cli/conf.clj
+/.calva/
+/.clj-kondo/
+/.lsp/

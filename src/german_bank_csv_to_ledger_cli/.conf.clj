@@ -9,3 +9,4 @@
                         "ALDI" "Expenses:Food:Supermarket"
                         "TK Maxx" "Expenses:Leisure:Clothes:Outfit"
     })
+

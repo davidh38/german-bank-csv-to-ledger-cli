@@ -49,3 +49,6 @@
 ## Errors
 - no known errors
 
+
+- .conf not correct
+- transactions has to be cleant
