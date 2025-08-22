@@ -1,4 +1,7 @@
 
+
+
+
 (ns german-bank-csv-to-ledger-cli.core
   (:require [clojure-csv.core :as csv]
             [clojure.java.io :as io]
@@ -14,17 +17,17 @@
 (defn invert-string-amount [amount]
   (if (str/starts-with? amount "-") (subs amount 1) (str "-" amount)))
 
-(defn determine-amount [entry]
-  (if (not= (nth entry (- (count entry) 3)) "")
-    (nth entry (- (count entry) 3))
-    (nth entry (- (count entry) 2))))
+(defn determine-amount [entry_coll]
+  (if (not= (nth entry_coll (- (count entry_coll) 3)) "")
+    (nth entry_coll (- (count entry_coll) 3))
+    (nth entry_coll (- (count entry_coll) 2))))
 
 (defn put-in-euro-sign [amount]
-  (if (str/starts-with? amount "-") (str "-" "€" (subs amount 1)) (str "€" amount)))
+    (str (str/replace amount "." ",") " EUR"))
 
-(defn determine-money-category [conf recipient]
+(defn determine-money-category [conf_map recipient]
   "" "if the string starts with a key the value should be evaluated" ""
-  (get conf (first (filter #(str/starts-with? recipient %) (keys conf))) recipient))
+  (get conf_map (first (filter #(str/starts-with? recipient %) (keys conf_map))) recipient))
 
 (defn build-entry-for-ledger [entry recipient money-category]
   (let [date-parts (str/split (first entry) #"/")
@@ -55,17 +58,18 @@
      (build-entry-for-ledger entry recipient))))
 
 (defn -main
-  [& args]
+  [args] 
   (if (= args nil) (println "Please provide a csv file!"))
   (println "------####### Starting program #####------")
   (->>
-   (take-csv (first args))
+   (take-csv args) ; eturns sequence of vectors
    ;partition-by uses first, because every transaction is a list
-   (partition-by #(str/starts-with? (first %) "Buchungstag"))
+   (partition-by #(str/starts-with? (first %) "Booking date"))
    (last)
-   ((fn [lst] (take (- (count lst) 1) lst))) ;delete last line, because it is no valid transaction
+   ;((fn [lst] (take (- (count lst) 1) lst))) ;delete last line, because it is no valid transaction
+   (butlast)
    (map (partial convert-to-ledger-format myconf/recipient-to-moneycategory))
    (reduce str)
    (println)))
 
-;; (-main "/home/dave/Downloads/Transactions_300_812603900_20250520_161809.csv")
+;lein run /home/dave/Downloads/Transactions_300_812603900_20250821_160422.csv > ./output

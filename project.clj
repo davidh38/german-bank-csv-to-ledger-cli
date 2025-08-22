@@ -6,4 +6,6 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [clojure-csv "2.0.2"]]
   :main ^:skip-aot german-bank-csv-to-ledger-cli.core
-  :target-path "target/%s")
+  :target-path "target/%s"
+  :plugins [[cider/cider-nrepl "0.49.0"]]
+  )
