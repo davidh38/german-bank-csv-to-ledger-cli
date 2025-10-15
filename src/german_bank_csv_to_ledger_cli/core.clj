@@ -1,7 +1,4 @@
 
-
-
-
 (ns german-bank-csv-to-ledger-cli.core
   (:require [clojure-csv.core :as csv]
             [clojure.java.io :as io]
@@ -45,6 +42,7 @@
 
   (cond
     (= (get entry 3) "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (get entry 4) #"^\d+" "") ;delete preceding unique numbers, if paypal
+    (= (get entry 3) "ABRECHNUNG KARTE") (get entry 4)
     (= (get entry 3) "") (get entry 4)
     :else
     (get entry 3)))
@@ -52,7 +50,7 @@
 (defn convert-to-ledger-format [conf entry]
   """determine the receiver and from that the category"""
 
-  (let [recipient (determine-recipient entry)]1
+  (let [recipient (determine-recipient entry)]
     (->>
      (determine-money-category conf recipient)
      (build-entry-for-ledger entry recipient))))
@@ -62,7 +60,7 @@
   (if (= args nil) (println "Please provide a csv file!"))
   (println "------####### Starting program #####------")
   (->>
-   (take-csv args) ; eturns sequence of vectors
+   (take-csv args) ; returns sequence of vectors
    ;partition-by uses first, because every transaction is a list
    (partition-by #(str/starts-with? (first %) "Booking date"))
    (last)
@@ -72,4 +70,5 @@
    (reduce str)
    (println)))
 
-;lein run /home/dave/Downloads/Transactions_300_812603900_20250821_160422.csv > ./output
+;(-main "/home/dave/Downloads/Transactions_300_812603900_20250821_160422.csv")
+;lein run /home/dave/Downloads/Transactions_300_8126039_00_20251015_171039.csv > ./output

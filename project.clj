@@ -7,5 +7,5 @@
                  [clojure-csv "2.0.2"]]
   :main ^:skip-aot german-bank-csv-to-ledger-cli.core
   :target-path "target/%s"
-  :plugins [[cider/cider-nrepl "0.49.0"]]
+  :plugins [[cider/cider-nrepl "0.55.7"]]
   )
