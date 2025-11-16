@@ -1,7 +1,8 @@
+(ns german-bank-csv-to-ledger-cli..conf)
 
-(ns german-bank-csv-to-ledger-cli.conf)
+   #_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
+   (def recipient-to-moneycategory {
 
-(def recipient-to-moneycategory {
                         "PP.7079.PP . HUEL, Ihr Einkauf bei HUEL" "Expenses:Food:Powder"
                         "PP.7079.PP . MANA DACH, Ihr Einkauf bei MANA DACH" "Expenses:Food:Powder"
                         "Telefonica Germany GmbH + Co. OHG" "Expenses:Leisure:Digital:Internet"

@@ -1,7 +1,7 @@
 (ns german-bank-csv-to-ledger-cli.core-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
             [german-bank-csv-to-ledger-cli.conf :as myconf]
-            [german-bank-csv-to-ledger-cli.core :refer :all]))
+            [german-bank-csv-to-ledger-cli.core :refer [convert-to-ledger-format determine-recipient]]))
 
 (deftest test-convert-to-ledger-format2-with-betreff
   (testing "FIXME, betreff")
