@@ -10,9 +10,10 @@
 ## Usage
 
     - change .conf.clj to conf.clj
-    - adapt the config
+      or link existing ln -s /home/dave/Dropbox/org/conf.clj ./src/german_bank_csv_to_ledger_cli/conf.clj  
+    - adapt the config to your needs
+    - lein test to check, whether everything is running correctly
     - install leiningen
-    - cd into the project directory
     - lein ueberjar
 
     $ java -jar german-bank-csv-to-ledger-cli-0.1.0-standalone.jar [file]
@@ -24,11 +25,11 @@
 ### ledger-cli format:
 ```
 2021/08/13 *  DROPBOXINTE
-	Expenses:Leisure:Digital:Storage  €11,99
-	Assets:Bank:Checking  -€11,99
+	Expenses:Leisure:Digital:Storage  11,99 EUR
+	Assets:Bank:Checking  -11,99 EUR
 2021/08/12 * Expenses:Food:Supermarket
-	Expenses:Food:Supermarket  €1,36
-	Assets:Bank:Checking  -€1,36
+	Expenses:Food:Supermarket  1,36 EUR
+	Assets:Bank:Checking  -1,36 EUR
 ```
 
 ## Requirements/User stories
@@ -46,9 +47,7 @@
 - FIXMEs in tests: how are they used effectively?
 - publish a compiled version
 
-## Errors
+# Errors
 - no known errors
-
-
 - .conf not correct
 - transactions has to be cleant
