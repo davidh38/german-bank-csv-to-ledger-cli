@@ -6,17 +6,19 @@
 (deftest test-convert-to-ledger-format2-with-betreff
   (testing "FIXME, betreff")
   (is (= "2021/12/30 * NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1523
-\tAssets:Food:Supermarket  €20,20
-\tAssets:Bank:Checking  -€20,20\n"
-(convert-to-ledger-format myconf/recipient-to-moneycategory ["30.12.2021" "30.12.2021" "Kartenzahlung" "" "NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1523"  "" "" "" "-20,20"  "EUR"])
-      )))
+\tAssets:Food:Supermarket  20,20 EUR
+\tAssets:Bank:Checking  -20,20 EUR\n"
+(convert-to-ledger-format myconf/recipient-to-moneycategory ["12/30/2021" "12/30/2021" "Debit Card Payment" "ABRECHNUNG KARTE" "NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1523"  "" "" "" "-20,20"  "EUR"])
+      )    )
+  )
 
 (deftest test-convert-to-ledger-format-with-betreff
   (testing "FIXME, betreff")
-  (is (= (convert-to-ledger-format myconf/recipient-to-moneycategory ["30.12.2021" "30.12.2021" "Kartenzahlung" "" "NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1523"  "" "" "" "-20,20"  "EUR"])
+  (is (= (convert-to-ledger-format myconf/recipient-to-moneycategory ["30.12.2021" "30.12.2021" "" "Kartenzahlung" "" "NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1523"  "" "" "" "-20,20"  "EUR"])
          "2021/12/30 * NETTO MARKEN-DISCOU//DUESSELDORF/DE 29-12-2021T21:34:38 Folgenr. 07 Verfalld. 1523
 	Assets:Food:Supermarket  €20,20
-	Assets:Bank:Checking  -€20,20\n")))
+	Assets:Bank:Checking  -€20,20\n"))
+  )
 
 (deftest test-convert-to-ledger-format-with-paypal
   (testing "FIXME, paypal")
