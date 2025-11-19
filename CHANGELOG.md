@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 
+## [0.0.5] - 2025-11-21
+### Created
+Dockerfile added
+
 ## [0.0.4] - 2022-01-10
 ### Created
 - Started using changelog.

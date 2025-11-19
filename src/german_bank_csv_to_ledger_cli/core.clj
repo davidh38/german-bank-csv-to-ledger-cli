@@ -75,5 +75,4 @@
    (reduce str)
    (println)))
 
-;(-main "/home/dave/Downloads/Transactions_300_812603900_20250821_160422.csv")
 ;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251026_093214.csv" > ./output
