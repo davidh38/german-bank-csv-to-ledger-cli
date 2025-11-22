@@ -19,12 +19,15 @@
     (nth entry_coll (- (count entry_coll) 2))))
 
 (defn put-in-euro-sign [amount]
-    (str (str/replace amount "." ",") " EUR"))
+  (str (str/replace amount "." ",") " EUR"))
 
-(defn determine-money-category 
+(defn determine-money-category
   "if the string starts with a key the value should be evaluated"
- [conf_map recipient]
-   (get conf_map (first (filter #(str/starts-with? recipient %) (keys conf_map))) recipient))
+  [conf_map recipient]
+  (get conf_map
+       (first
+        (filter
+         #(str/starts-with? recipient %) (keys conf_map))) "test"))
 
 (defn build-entry-for-ledger [entry recipient money-category]
   (let [date-parts (str/split (first entry) #"/")
@@ -36,10 +39,10 @@
          "\t" money-category  "  " (put-in-euro-sign (invert-string-amount (determine-amount entry))) "\n"
          "\tAssets:Bank:Checking  "    (put-in-euro-sign (determine-amount entry))  "\n")))
 
-(defn determine-recipient 
-   "in case of paypal as auftraggeber or empty auftraggeber return betreff entry as recipient
+(defn determine-recipient
+  "in case of paypal as auftraggeber or empty auftraggeber return betreff entry as recipient
      in all other cases return auftraggeber as recipient"
- [entry]
+  [entry]
   (cond
     (= (get entry 3) "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (get entry 4) #"^\d+" "") ;delete preceding unique numbers, if paypal
     (= (get entry 3) "ABRECHNUNG KARTE") (get entry 4)
@@ -47,20 +50,19 @@
     :else
     (get entry 3)))
 
-(defn convert-to-ledger-format 
+(defn convert-to-ledger-format
   "determine the receiver and from that the category"
   [conf entry]
 
-  (let [recipient (determine-recipient entry)] 
+  (let [recipient (determine-recipient entry)]
     (->>
      (determine-money-category conf recipient)
-     (build-entry-for-ledger entry recipient)))
-  )
+     (build-entry-for-ledger entry recipient))))
 
 (defn -main
-  [args] 
-  (cond (= args nil) 
-    (println "Please provide a csv file!"))
+  [args]
+  (cond (= args nil)
+        (println "Please provide a csv file!"))
   (println "------####### Starting program #####------")
   (->>
    (take-csv args) ; returns sequence of vectors
@@ -75,4 +77,5 @@
    (reduce str)
    (println)))
 
-;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251026_093214.csv" > ./output
+;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv" > ./output
+
