@@ -13,13 +13,16 @@
 (defn invert-string-amount [amount]
   (if (str/starts-with? amount "-") (subs amount 1) (str "-" amount)))
 
-(defn determine-amount [entry_coll]
+(defn determine-amount-of-tx [entry_coll]
   (if (not= (nth entry_coll (- (count entry_coll) 3)) "")
     (nth entry_coll (- (count entry_coll) 3))
     (nth entry_coll (- (count entry_coll) 2))))
 
-(defn put-in-euro-sign [amount]
-  (str (str/replace amount "." ",") " EUR"))
+(defn format-amount-to-euro [amount]
+  (->
+   (str/replace amount "," "") ; for > 1000
+   (str/replace "." ",")
+   (str " EUR")))
 
 (defn determine-money-category
   "if the string starts with a key the value should be evaluated"
@@ -36,8 +39,8 @@
         day (nth date-parts 1)
         formatted-date (str year "/" month "/" day)]
     (str formatted-date " * " recipient "\n"
-         "\t" money-category  "  " (put-in-euro-sign (invert-string-amount (determine-amount entry))) "\n"
-         "\tAssets:Bank:Checking  "    (put-in-euro-sign (determine-amount entry))  "\n")))
+         "\t" money-category  "  " (format-amount-to-euro (invert-string-amount (determine-amount-of-tx entry))) "\n"
+         "\tAssets:Bank:Checking  "    (format-amount-to-euro (determine-amount-of-tx entry))  "\n")))
 
 (defn determine-recipient
   "in case of paypal as auftraggeber or empty auftraggeber return betreff entry as recipient
