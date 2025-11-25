@@ -77,8 +77,8 @@
    (butlast)
    ;takes a seq of vectors and maps it to a sequence of str
    (map (partial convert-to-ledger-format myconf/recipient-to-moneycategory))
-   (reduce str)
+;  (reduce str)
+   (take 2)
    (println)))
 
 ;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv" > ./output
-
