@@ -51,4 +51,4 @@
 (defn -main [& args]
   (open-html-in-browser))
 
-;lein run -m german-bank-csv-to-ledger-cli.output-html
+;lein run -m german-bank-csv-to-ledger-cli.output-ring

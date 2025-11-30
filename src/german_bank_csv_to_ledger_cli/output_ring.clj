@@ -124,3 +124,6 @@
 (defn -main [& _]
   (run-jetty handler {:port 3000 :join? false})
   (.exec (Runtime/getRuntime) "chromium-browser http://localhost:3000"))
+
+
+;lein run -m german-bank-csv-to-ledger-cli.output-ring.clj

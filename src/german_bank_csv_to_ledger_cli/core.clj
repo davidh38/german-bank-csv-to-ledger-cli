@@ -53,7 +53,7 @@
     (:credit_amount ledger-entry)))
 
 
-(defn build-entry-for-ledger [entry]
+(defn build-string-entry-for-ledger [entry]
   (let [date-parts (str/split (:date entry) #"/")
         year (nth date-parts 2)
         month (nth date-parts 0)
@@ -126,10 +126,15 @@
 
    (map #(determine-money-category myconf/recipient-to-moneycategory %))
 
-   (map build-entry-for-ledger)
+   (map build-string-entry-for-ledger)
 
    (reduce str)
    (println)))
-;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv" > ./output
 
-(-main "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv")
+;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv" > ./output
+;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv" > ./output
+
+;lein run /home/dave/Downloads/Transactions_300_8126039_00_20251130_155558.csv" > ./output
+
+;(-main "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv")
+;(-main "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv")
