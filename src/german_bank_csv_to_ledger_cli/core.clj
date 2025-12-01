@@ -138,3 +138,10 @@
 
 ;(-main "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv")
 ;(-main "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv")
+
+; change conf.clj to .edn
+; show the UI
+; save the backup
+; in the UI add to the conf map
+; add new categorization to the map
+; save the map

@@ -126,4 +126,4 @@
   (.exec (Runtime/getRuntime) "chromium-browser http://localhost:3000"))
 
 
-;lein run -m german-bank-csv-to-ledger-cli.output-ring.clj
+;lein run -m german-bank-csv-to-ledger-cli.output-ring
