@@ -9,16 +9,16 @@
 
 ## Usage
 
-    - change .conf.clj to conf.clj
-      or link existing ln -s /home/dave/Dropbox/org/conf.clj ./src/german_bank_csv_to_ledger_cli/conf.clj  
+    - change .conf.edn to conf.edn
+      or link your existing by e.g. ln -s /home/dave/Dropbox/org/conf.edn ./src/german_bank_csv_to_ledger_cli/conf.edn  
     - adapt the config to your needs
-    - lein test to check, whether everything is running correctly
     - install leiningen
+    - lein test to check, whether everything is running correctly
     - lein ueberjar
 
-    $ java -jar german-bank-csv-to-ledger-cli-0.1.0-standalone.jar [file]
+    $ java -jar german-bank-csv-to-ledger-cli-0.1.0-standalone.jar [transaction-file]
      or
-    $ lein run [file]
+    $ lein run [transaction-file]
 
 ## Examples
 
@@ -44,10 +44,5 @@
 
 ## Todos
 
-- FIXMEs in tests: how are they used effectively?
-- publish a compiled version
-
-# Errors
-- no known errors
-- .conf not correct
-- transactions has to be cleant
+- improve UI -> more snappy
+- show nicer layout

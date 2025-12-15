@@ -4,11 +4,6 @@
 (defn invert-string-amount [amount]
   (if (str/starts-with? amount "-") (subs amount 1) (str "-" amount)))
 
-(defn determine-amount-of-tx [entry_coll]
-  (if (not= (nth entry_coll (- (count entry_coll) 3)) "")
-    (nth entry_coll (- (count entry_coll) 3))
-    (nth entry_coll (- (count entry_coll) 2))))
-
 (defn format-amount-to-euro [amount]
   (->
    (str/replace amount "," "") ; for > 1000
@@ -38,7 +33,6 @@
           #(str/starts-with? (:payee ledger-entry) %) (keys conf_map))) "Uncategorized")))
 
 (defn determine-debit-or-credit-amount [ledger-entry]
-
   (if (not= (:debit_amount ledger-entry) "")
     (:debit_amount ledger-entry)
     (:credit_amount ledger-entry)))
@@ -122,12 +116,10 @@
    ;partition-by uses first, because every transaction is a list
    (partition-by #(str/starts-with? (first %) "Booking date"))
    (last)
-   ;((fn [lst] (take (- (count lst) 1) lst))) 
    ;delete last line, because it is no valid transaction
    (butlast)
    ;puts the list of vectors and puts it into the correct hashmap
    (map vector-to-hashmap)
-;  (#(doto % tap>))
    (map csv-entry-to-ledger)
    (map #(determine-money-category myconf %))
 ;   (map build-string-entry-for-ledger)
@@ -135,16 +127,8 @@
   ; (reduce str)
    ))
 
-;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv" > ./output
-;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv" > ./output
 ;lein run /home/dave/Downloads/Transactions_300_8126039_00_20251130_155558.csv" > ./output
 
 ;(convert-csv-to-hashmap "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv")
 
-; change conf.clj to .edn
-; show the UI
-; save the backup
-; in the UI add to the conf map
-; add new categorization to the map
-; save the map
  

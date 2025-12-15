@@ -16,7 +16,7 @@ COPY src/ src/
 RUN rm -f src/german_bank_csv_to_ledger_cli/.conf.clj src/german_bank_csv_to_ledger_cli/conf.clj
 
 # Copy the actual config file from the build context
-COPY conf.clj src/german_bank_csv_to_ledger_cli/conf.clj
+COPY conf.edn src/german_bank_csv_to_ledger_cli/conf.edn
 
 # Set entrypoint
 ENTRYPOINT ["lein", "run"]

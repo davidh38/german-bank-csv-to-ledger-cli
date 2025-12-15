@@ -11,8 +11,6 @@
             [clojure.edn :as edn]) (:gen-class))
 
 
-
-
 (defn slurp-edn [path]
   (edn/read-string (slurp path)))
 
@@ -27,7 +25,7 @@
 
 (defn save-config [payee expense]
   (save-edn-file
-   (assoc  (slurp-edn "/home/dave/german-bank-csv-to-ledger-cli/src/german_bank_csv_to_ledger_cli/conf.edn")
+   (assoc  (slurp-edn "./src/german_bank_csv_to_ledger_cli/conf.edn")
            payee expense)))
 
 
@@ -37,7 +35,7 @@
                 [:td
                  [:div (:date x)]]
                 [:td [:div (:payee x)]]
-                [:td [:div (:debit_amount x)]]
+                [:td [:div (core/determine-debit-or-credit-amount x)]]
                 [:td [:div (:currency x)]]
                 [:td [:div (:credit_account x)]]
                 [:td [:a {:href "test"} (:debit_account x)]]]) data))
