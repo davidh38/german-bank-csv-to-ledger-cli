@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+tr:hover td {
+    background-color: #d0e0ff;
+    /* highlight entire row */
+}
+
+#layout {
+    display: flex;
+    flex-direction: column;
+    background-color: #fddbdb;
+}
+
+.button {
+    
+    padding: 10px;
+    background: rgb(212, 205, 205);
+    color: rgb(0, 0, 0);
+}
+
+.myclass {
+
+    background: red;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    padding: 100px;
+
+}
+
+/* hell/dunkel = alternating row colors */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* light */
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* white */
+}
+
+th {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#mytable {
+    display: flex;
+    border-collapse: collapse;
+    font-family: sans-serif;
+
+}
+
+.parent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* optional */
+}
+
+.myclass2 {
+    width: 200px;
+    height: 250px;
+    background: blue;
+}
+
+.myclass3 {
+    width: 200px;
+    height: 200px;
+    background: green;
+}
+
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    /* lighter overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Popup box */
+.popup-content {
+    background: #ffffff;
+    /* bright background */
+    padding: 24px;
+    width: 360px;
+    border-radius: 12px;
+    /* softer corners */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    font-family: sans-serif;
+    color: #222;
+    /* dark readable text */
+    line-height: 1.5;
+}
+
+/* Close button */
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 26px;
+    font-weight: bold;
+    color: #666;
+}
+
+.close:hover {
+    color: #000;
+}

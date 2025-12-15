@@ -1,14 +1,5 @@
 (ns german-bank-csv-to-ledger-cli.core
-  (:require [clojure-csv.core :as csv]
-            [clojure.java.io :as io]
-            [clojure.string :as str]
-            [german-bank-csv-to-ledger-cli.conf :as myconf]) (:gen-class))
-
-(defn take-csv
-  "Takes file name and reads data."
-  [fname]
-  (with-open [file (io/reader fname)]
-    (csv/parse-csv  (slurp file) :delimiter \;)))
+  (:require [clojure.string :as str]))
 
 (defn invert-string-amount [amount]
   (if (str/starts-with? amount "-") (subs amount 1) (str "-" amount)))
@@ -25,12 +16,12 @@
    (str " EUR")))
 
 (defn determine-recipient
-  "in case of paypal as auftraggeber or empty auftraggeber return betreff entry as recipient
+  "in nase of paypal as auftraggeber or empty auftraggeber return betreff entry as recipient
      in all other cases return auftraggeber as recipient"
   [entry]
   (cond
     (= (:Beneficiary-Originator entry) "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
-    (= (:Beneficiary-Originator entry) "ABRECHNUNG KARTE") (:Payment-Details entry)
+    (= (str/lower-case  (:Beneficiary-Originator entry)) "abrechnung karte") (:Payment-Details entry)
     (= (:Beneficiary-Originator entry) "") (:Payment-Details entry)
     :else
     (:Beneficiary-Originator entry)))
@@ -51,17 +42,6 @@
   (if (not= (:debit_amount ledger-entry) "")
     (:debit_amount ledger-entry)
     (:credit_amount ledger-entry)))
-
-
-(defn build-string-entry-for-ledger [entry]
-  (let [date-parts (str/split (:date entry) #"/")
-        year (nth date-parts 2)
-        month (nth date-parts 0)
-        day (nth date-parts 1)
-        formatted-date (str year "/" month "/" day)]
-    (str formatted-date " * " (:payee entry) "\n"
-         "\t" (:debit_account entry) "  " (format-amount-to-euro (invert-string-amount (determine-debit-or-credit-amount entry))) "\n"
-         "\tAssets:Bank:Checking  "    (format-amount-to-euro (determine-debit-or-credit-amount entry))  "\n")))
 
 
 (defn vector-to-hashmap [transaction]
@@ -106,13 +86,19 @@
         (assoc :credit_amount (:Credit csv-transaction))
         (assoc :payee (determine-recipient csv-transaction)))))
 
-(defn -main
-  [args]
-  (cond (= args nil)
-        (println "Please provide a csv file!"))
-  (println "------####### Starting program #####------")
+(defn build-string-entry-for-ledger [entry]
+  (let [date-parts (str/split (:date entry) #"/")
+        year (nth date-parts 2)
+        month (nth date-parts 0)
+        day (nth date-parts 1)
+        formatted-date (str year "/" month "/" day)]
+    (str formatted-date " * " (:payee entry) "\n"
+         "\t" (:debit_account entry) "  " (format-amount-to-euro (invert-string-amount (determine-debit-or-credit-amount entry))) "\n"
+         "\tAssets:Bank:Checking  "    (format-amount-to-euro (determine-debit-or-credit-amount entry))  "\n")))
+
+(defn convert-csv-to-string [csvfile myconf]
   (->>
-   (take-csv args) ; returns sequence of vectors
+   csvfile ; returns sequence of vectors
    ;partition-by uses first, because every transaction is a list
    (partition-by #(str/starts-with? (first %) "Booking date"))
    (last)
@@ -121,23 +107,39 @@
    (butlast)
    ;puts the list of vectors and puts it into the correct hashmap
    (map vector-to-hashmap)
-
+;  (#(doto % tap>))
    (map csv-entry-to-ledger)
-
-   (map #(determine-money-category myconf/recipient-to-moneycategory %))
-
+   (map #(determine-money-category myconf %))
    (map build-string-entry-for-ledger)
 
-   (reduce str)
-   (println)))
+   (reduce str)))
+
+
+
+(defn convert-csv-to-hashmap [csvfile myconf]
+  (->>
+   csvfile ; returns sequence of vectors
+   ;partition-by uses first, because every transaction is a list
+   (partition-by #(str/starts-with? (first %) "Booking date"))
+   (last)
+   ;((fn [lst] (take (- (count lst) 1) lst))) 
+   ;delete last line, because it is no valid transaction
+   (butlast)
+   ;puts the list of vectors and puts it into the correct hashmap
+   (map vector-to-hashmap)
+;  (#(doto % tap>))
+   (map csv-entry-to-ledger)
+   (map #(determine-money-category myconf %))
+;   (map build-string-entry-for-ledger)
+
+  ; (reduce str)
+   ))
 
 ;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv" > ./output
 ;lein run "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv" > ./output
-
 ;lein run /home/dave/Downloads/Transactions_300_8126039_00_20251130_155558.csv" > ./output
 
-;(-main "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv")
-;(-main "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv")
+;(convert-csv-to-hashmap "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv")
 
 ; change conf.clj to .edn
 ; show the UI
@@ -145,3 +147,4 @@
 ; in the UI add to the conf map
 ; add new categorization to the map
 ; save the map
+ 

@@ -6,8 +6,11 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [clojure-csv "2.0.2"]
                  [ring/ring-core "1.12.2"]
-                 [hiccup "1.0.5"]
-                 [ring/ring-jetty-adapter "1.12.2"]]
-  :main ^:skip-aot german-bank-csv-to-ledger-cli.core
+                 [hiccup/hiccup "2.0.0-alpha2"]
+                 [ring/ring-jetty-adapter "1.12.2"]
+                 [ring-refresh "0.2.0"]
+                 [ring/ring-devel "1.12.2"]
+                 [djblue/portal "0.50.0"]]
+  :main ^:skip-aot german-bank-csv-to-ledger-cli.io
   :target-path "target/%s"
   :plugins [[cider/cider-nrepl "0.55.7"]])
