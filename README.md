@@ -3,7 +3,7 @@
     Converts german bank account export .csv file into ledger-cli format by determining the recipient and deducting its respective money category from the config. 
     This only works for the .csv in the german language. If an english version is used, the program would have to be tweeked a little.
 
-![alt text](./resources/public/image.png)
+![alt text](./resources/public/image2.png)
 
 ## Installation
 
