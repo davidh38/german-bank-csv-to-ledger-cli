@@ -30,15 +30,17 @@
 
 
 (defn myhtml5 [data]
-  (map (fn [x] [:tr {:data-date (:date x) :data-payee (:payee x) :data-currency (:payee x) :data-creditaccount (:credit_account x)  :data-debit (:debit_account x)
-                     :data-amount (:amount x)}
-                [:td
-                 [:div (:date x)]]
-                [:td [:div (:payee x)]]
-                [:td [:div (core/determine-debit-or-credit-amount x)]]
-                [:td [:div (:currency x)]]
-                [:td [:div (:credit_account x)]]
-                [:td [:a {:href "test"} (:debit_account x)]]]) data))
+  (map (fn [x]
+
+         [:tr {:data-date (:date x) :data-payee (:payee x) :data-currency (:payee x) :data-creditaccount (:credit_account x)  :data-debit (:debit_account x)
+               :data-amount (:amount x)}
+          [:td
+           [:div (:date x)]]
+          [:td [:div (:payee x)]]
+          [:td [:div (core/determine-debit-or-credit-amount x)]]
+          [:td [:div (:currency x)]]
+          [:td [:div (:credit_account x)]]
+          [:td [:a {:href "test"} (:debit_account x)]]]) data))
 
 
 (defn hiccup [data] (html5
@@ -55,10 +57,20 @@
                         [:p "Debit: " [:input {:type "text" :id "pDebit"}]]
                         [:p "Credit: " [:span {:id "pCredit"}]]
                         [:button {:id "savePopup"} "Save"]]]
-                      [:button {:id "copybutton" :class "button"} "Copy to clipboard"]
-                      [:div {:id "mytable"}
-                       [:table
-                        (myhtml5 data)]]]))
+                      [:div {:id "layout"}
+                       [:button {:id "copybutton" :class "button"} "Copy to clipboard"]
+                       [:div {:id "mytable" class "table-wrap"}
+                        [:table {:class "hc-table"}
+                         [:thead
+                          [:tr
+                           [:th "Date"]
+                           [:th "Payee"]
+                           [:th "Amount"]
+                           [:th "Currency"]
+                           [:th "Account"]
+                           [:th "Account"]]]
+                         [:tbody
+                          (myhtml5 data)]]]]]))
 
 
 
@@ -83,8 +95,6 @@
             b      (get params "b")]
         (if (and a b)
           (do
-            (println a)
-            (println b)
             (save-config a b)   ;; ✅ called BEFORE return
             {:status 302
              :headers {"Location" "/"}

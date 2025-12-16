@@ -16,6 +16,7 @@
   [entry]
   (cond
     (= (:Beneficiary-Originator entry) "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
+    (= (:Beneficiary-Originator entry) "PayPal (Europe) S.a r.l. et Cie, S. C.A.") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
     (= (str/lower-case  (:Beneficiary-Originator entry)) "abrechnung karte") (:Payment-Details entry)
     (= (:Beneficiary-Originator entry) "") (:Payment-Details entry)
     :else
@@ -109,7 +110,6 @@
    (reduce str)))
 
 
-
 (defn convert-csv-to-hashmap [csvfile myconf]
   (->>
    csvfile ; returns sequence of vectors
@@ -128,7 +128,6 @@
    ))
 
 ;lein run /home/dave/Downloads/Transactions_300_8126039_00_20251130_155558.csv" > ./output
-
 ;(convert-csv-to-hashmap "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv")
 
  

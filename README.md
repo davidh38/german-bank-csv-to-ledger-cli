@@ -3,6 +3,8 @@
     Converts german bank account export .csv file into ledger-cli format by determining the recipient and deducting its respective money category from the config. 
     This only works for the .csv in the german language. If an english version is used, the program would have to be tweeked a little.
 
+![alt text](./resources/public/image.png)
+
 ## Installation
 
     git clone https://github.com/davidh38/german-bank-csv-to-ledger-cli
@@ -43,6 +45,31 @@
 - The converted data will be printed to the command line/shell.
 
 ## Todos
-
-- improve UI -> more snappy
+- check paypal bug DONE
+- delete print logs DONE
+- first line in the layout should be headers DONE
+- improve UI -> more snappy (flex maybe)
 - show nicer layout
+- improve layout
+- download new transactions automatically
+- get the filename of the new transactions
+- create bigger popup
+- Improve popup: better naming and longer input fields
+- Check, whether the current browser suggestions are enough
+- improve layout
+- update readme
+- fix Dockerfile
+- suggestion: switch from javascript to clojurescript
+- suggestion: switch to tailwind or ornament
+- code review with a.i
+- suggestion: filter and search bar
+- delete the link
+
+
+## Summary
+- [ ] CI green on main
+- [ ] Version bumped
+- [ ] Changelog updated
+- [ ] Docs updated (if user-facing changes)
+- [ ] Tag pushed
+- [ ] GitHub Release created
