@@ -48,8 +48,8 @@
 - check paypal bug DONE
 - delete print logs DONE
 - first line in the layout should be headers DONE
+- show nicer layout DONE
 - improve UI -> more snappy (flex maybe)
-- show nicer layout
 - improve layout
 - download new transactions automatically
 - get the filename of the new transactions
