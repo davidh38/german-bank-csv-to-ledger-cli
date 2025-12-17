@@ -72,6 +72,7 @@ browse localhost:3002
 - suggestion: switch from javascript to clojurescript
 - suggestion: switch to tailwind or ornament
 - suggestion: download new transactions automatically
+- suggestion: test docker usage with config file
 - get the filename of the new transactions
   
 
