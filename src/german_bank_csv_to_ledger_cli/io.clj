@@ -21,7 +21,7 @@
     (csv/parse-csv  (slurp file) :delimiter \;)))
 
 (defn save-edn-file [data]
-  (spit "/home/dave/german-bank-csv-to-ledger-cli/src/german_bank_csv_to_ledger_cli/conf.edn" (pr-str data)))
+  (spit "./src/german_bank_csv_to_ledger_cli/conf.edn" (pr-str data)))
 
 (defn save-config [payee expense]
   (save-edn-file
@@ -29,7 +29,7 @@
            payee expense)))
 
 
-(defn myhtml5 [data]
+(defn transaction-table [data]
   (map (fn [x]
 
          [:tr {:data-date (:date x) :data-payee (:payee x) :data-currency (:payee x) :data-creditaccount (:credit_account x)  :data-debit (:debit_account x)
@@ -40,10 +40,10 @@
           [:td [:div (core/determine-debit-or-credit-amount x)]]
           [:td [:div (:currency x)]]
           [:td [:div (:credit_account x)]]
-          [:td [:a {:href "test"} (:debit_account x)]]]) data))
+          [:td [:div (:debit_account x)]]]) data))
 
 
-(defn hiccup [data] (html5
+(defn header [data] (html5
                      [:head]
                      [:link {:rel "stylesheet" :href "styles.css"}]
                      [:script {:src "javascript.js" :defer true}]
@@ -70,25 +70,25 @@
                            [:th "Account"]
                            [:th "Account"]]]
                          [:tbody
-                          (myhtml5 data)]]]]]))
+                          (transaction-table data)]]]]]))
 
 
 
 (defn getdata [file-path]
   (core/convert-csv-to-hashmap
    (take-csv file-path)
-   (slurp-edn "/home/dave/german-bank-csv-to-ledger-cli/src/german_bank_csv_to_ledger_cli/conf.edn")))
+   (slurp-edn "./src/german_bank_csv_to_ledger_cli/conf.edn")))
 
 (defn make-handler [file-path]
   (fn [req]
     (case [(:request-method req) (:uri req)]
       [:get "/"] {:status 200
                   :headers {"Content-Type" "text/html"}
-                  :body (hiccup (getdata file-path))}
+                  :body (header (getdata file-path))}
       [:get "/copy"] {:status 200
                       :headers {"Content-Type" "text/plain"}
                       :body (core/convert-csv-to-string (take-csv file-path)
-                                                        (slurp-edn "/home/dave/german-bank-csv-to-ledger-cli/src/german_bank_csv_to_ledger_cli/conf.edn"))}
+                                                        (slurp-edn "./src/german_bank_csv_to_ledger_cli/conf.edn"))}
       [:post "/mytest"]
       (let [params (:params req)
             a      (get params "a")
@@ -114,7 +114,8 @@
        (wrap-reload)
        (wrap-refresh)
        (run-jetty {:port 3002 :join? false}))
-  (.exec (Runtime/getRuntime) "chromium-browser http://localhost:3002"))
+ ; (.exec (Runtime/getRuntime) "chromium-browser http://localhost:3002")
+  )
 
 
 ;

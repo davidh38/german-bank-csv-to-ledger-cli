@@ -103,8 +103,8 @@ td {
 .popup-content {
     background: #ffffff;
     /* bright background */
-    padding: 24px;
-    width: 360px;
+    padding: 40px;
+    width: 500px;
     border-radius: 12px;
     /* softer corners */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -148,6 +148,8 @@ td {
 .hc-table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
+    /* IMPORTANT */
     font-family: system-ui, sans-serif;
     font-size: 14px;
     color: var(--fg);

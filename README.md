@@ -3,9 +3,15 @@
     Converts german bank account export .csv file into ledger-cli format by determining the recipient and deducting its respective money category from the config. 
     This only works for the .csv in the german language. If an english version is used, the program would have to be tweeked a little.
 
+
+## Installation with Docker
+docker build . -t germanbankconvert
+docker run -p 3002:3002 -v /home/dave/Downloads/file.csv:/data/input.csv germanbankconvert /data/input.csv
+browse localhost:3002:
+
 ![alt text](./resources/public/image2.png)
 
-## Installation
+## Manual
 
     git clone https://github.com/davidh38/german-bank-csv-to-ledger-cli
 
@@ -49,21 +55,25 @@
 - delete print logs DONE
 - first line in the layout should be headers DONE
 - show nicer layout DONE
-- improve UI -> more snappy (flex maybe)
-- improve layout
-- download new transactions automatically
-- get the filename of the new transactions
+- improve UI -> more snappy (flex maybe) DONE
+- delete the link DONE
 - create bigger popup
+- Popup Naming
 - Improve popup: better naming and longer input fields
 - Check, whether the current browser suggestions are enough
-- improve layout
 - update readme
 - fix Dockerfile
-- suggestion: switch from javascript to clojurescript
-- suggestion: switch to tailwind or ornament
 - code review with a.i
 - suggestion: filter and search bar
-- delete the link
+- sort function or filter by uncategorized
+- check brunos improvements
+- suggestion: use ornament
+- suggestion: use lambda island
+- suggestion: switch from javascript to clojurescript
+- suggestion: switch to tailwind or ornament
+- suggestion: download new transactions automatically
+- get the filename of the new transactions
+  
 
 
 ## Summary

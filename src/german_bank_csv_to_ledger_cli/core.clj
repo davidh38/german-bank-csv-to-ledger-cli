@@ -127,7 +127,7 @@
   ; (reduce str)
    ))
 
-;lein run /home/dave/Downloads/Transactions_300_8126039_00_20251130_155558.csv" > ./output
-;(convert-csv-to-hashmap "/home/dave/Downloads/Transactions_300_8126039_00_20251130_154052.csv")
+;lein run /home/dave/Downloads/Transactions_300_20251130_155558.csv" > ./output
+;(convert-csv-to-hashmap "/home/dave/Downloads/Transactions_300__20251130_154052.csv")
 
  
