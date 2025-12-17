@@ -5,9 +5,10 @@
 
 
 ## Installation with Docker
-docker build . -t germanbankconvert
-docker run -p 3002:3002 -v /home/dave/Downloads/file.csv:/data/input.csv germanbankconvert /data/input.csv
-browse localhost:3002:
+
+    docker build . -t germanbankconvert
+    docker run -p 3002:3002 -v /home/dave/Downloads/file.csv:/data/input.csv germanbankconvert /data/input.csv
+    browse localhost:3002:
 
 ![alt text](./resources/public/image2.png)
 
