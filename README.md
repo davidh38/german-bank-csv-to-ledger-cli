@@ -1,8 +1,6 @@
 # german-bank-csv-to-ledger-cli
 
-    Converts german bank account export .csv file into ledger-cli format by determining the recipient and deducting its respective money category from the config. 
-    This only works for the .csv in the german language. If an english version is used, the program would have to be tweeked a little.
-
+    Converts german bank account export .csv file into ledger-cli format by determining the recipient and deducting its respective money category from a config. The web interface can be used to find Uncategorized Accounts and populating the config with corresponding recipients. With the "copy to clipboard" function, the transactions can be exported.
 
 ## Installation with Docker
 
@@ -44,7 +42,7 @@ browse localhost:3002
 
 ## Requirements/User stories
 
-- The german bank .csv file has to be cut first at the *Buchungstag* line and the last line which shows the *Kontoumsaetze* has to be cut off in order to only use the transactions.
+- The german bank .csv file has to be cut first at the *booking date* line and the last line which shows the *Kontoumsaetze* has to be cut off in order to only use the transactions.
 - The program distingiushes between three types of transactions:
     1. recipient is present in the **Aufftraggeber** field
     2. recipient is present in the **Betreff** and the **Aufftraggeber** is empty
