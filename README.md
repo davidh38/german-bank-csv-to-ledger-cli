@@ -57,12 +57,12 @@ browse localhost:3002:
 - show nicer layout DONE
 - improve UI -> more snappy (flex maybe) DONE
 - delete the link DONE
+- fix Dockerfile DONE
 - create bigger popup
 - Popup Naming
 - Improve popup: better naming and longer input fields
 - Check, whether the current browser suggestions are enough
 - update readme
-- fix Dockerfile
 - code review with a.i
 - suggestion: filter and search bar
 - sort function or filter by uncategorized
