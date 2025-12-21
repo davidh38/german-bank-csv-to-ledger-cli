@@ -64,9 +64,10 @@ browse localhost:3002
 - Check, whether the current browser suggestions are enough
 - update readme
 - code review with a.i
-- suggestion: filter and search bar
 - sort function or filter by uncategorized
-- check brunos improvements
+- check brunos improvements: use destructering
+- no release / package it
+- suggestion: filter and search bar
 - suggestion: use ornament
 - suggestion: use lambda island
 - suggestion: switch from javascript to clojurescript
@@ -74,7 +75,6 @@ browse localhost:3002
 - suggestion: download new transactions automatically
 - suggestion: test docker usage with config file
 - get the filename of the new transactions
-  
 
 
 ## Summary
