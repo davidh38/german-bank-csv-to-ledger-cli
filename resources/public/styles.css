@@ -38,7 +38,7 @@ td {
   top: 50%;
   left: 50%;
   width: 800px;
-  height: 250px;
+  height: 300px;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.25);
   z-index: 9999;
@@ -149,4 +149,159 @@ td {
 
 .inputtext {
 width: 600px;
+font-size: 14px;
+padding: 10px 14px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+tr:hover td {
+    background-color: #052360;
+    /* highlight entire row */
+}
+
+#layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    align-self: flex-end;
+    padding: 15px;
+    background: rgb(13, 217, 193);
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #055180;
+}
+
+.parent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* optional */
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+}
+
+/* Popup box */
+.popup-content {
+    background: #ffffff;
+    /* bright background */
+    padding: 40px;
+    width: 1200px;
+    border-radius: 12px;
+    /* softer corners */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    font-family: sans-serif;
+    color: #222;
+    /* dark readable text */
+    line-height: 1.5;
+}
+
+/* Close button */
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 26px;
+    font-weight: bold;
+    color: #666;
+}
+
+.close:hover {
+    color: #000;
+
+}
+
+:root {
+    background: #000;
+    --bg: #0f172a;
+    --bg-row: #020617;
+    --bg-hover: #020617;
+    --fg: #e5e7eb;
+    --fg-muted: #9ca3af;
+    --border: #1e293b;
+}
+
+.table-wrap {
+    background: var(--bg);
+    padding: 16px;
+    border-radius: 12px;
+    max-width: 800px;
+}
+
+.hc-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    /* IMPORTANT */
+    font-family: system-ui, sans-serif;
+    font-size: 14px;
+    color: var(--fg);
+}
+
+.hc-table thead th {
+    background: #020617;
+    color: var(--fg-muted);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.hc-table tbody tr {
+    background: var(--bg-row);
+}
+
+.hc-table tbody tr+tr {
+    border-top: 1px solid var(--border);
+}
+
+.hc-table tbody tr:hover {
+    background: var(--bg-hover);
+}
+
+.hc-table td {
+    padding: 12px 14px;
+}
+
+.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Status accents */
+.ok {
+    color: #22c55e;
+    font-weight: 600;
+}
+
+.warn {
+    color: #f59e0b;
+    font-weight: 600;
+}
+
+.fail {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+#savePopup {
+margin: 5px;
 }

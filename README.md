@@ -58,11 +58,10 @@ browse localhost:3002
 - improve UI -> more snappy (flex maybe) DONE
 - delete the link DONE
 - fix Dockerfile DONE
-- create bigger popup 
-- Popup Naming 
-- Improve popup: better naming and longer input fields
+- create bigger popup DONE
+- Popup Naming DONE
+- Improve popup: longer input fields DONE
 - Check, whether the current browser suggestions are enough
-- update readme
 - code review with a.i
 - sort function or filter by uncategorized
 - check brunos improvements: use destructering

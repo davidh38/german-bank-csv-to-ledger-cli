@@ -11,14 +11,13 @@
    (str " EUR")))
 
 (defn determine-recipient
-  "in nase of paypal as auftraggeber or empty auftraggeber return betreff entry as recipient
-     in all other cases return auftraggeber as recipient"
+  "return beneficiary except for abrechnung, karte"
   [entry]
   (cond
     (= (:Beneficiary-Originator entry) "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
     (= (:Beneficiary-Originator entry) "PayPal (Europe) S.a r.l. et Cie, S. C.A.") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
-    (= (str/lower-case  (:Beneficiary-Originator entry)) "abrechnung karte") (:Payment-Details entry)
     (= (:Beneficiary-Originator entry) "") (:Payment-Details entry)
+    (= (str/lower-case  (:Beneficiary-Originator entry)) "abrechnung karte") (:Payment-Details entry)
     :else
     (:Beneficiary-Originator entry)))
 
@@ -99,24 +98,6 @@
          "\t" (:debit_account entry) "  " (format-amount-to-euro (invert-string-amount (determine-debit-or-credit-amount entry))) "\n"
          "\tAssets:Bank:Checking  "    (format-amount-to-euro (determine-debit-or-credit-amount entry))  "\n")))
 
-(defn convert-csv-to-string [csvfile myconf]
-  (->>
-   csvfile ; returns sequence of vectors
-   ;partition-by uses first, because every transaction is a list
-   (partition-by #(str/starts-with? (first %) "Booking date"))
-   (last)
-   ;((fn [lst] (take (- (count lst) 1) lst))) 
-   ;delete last line, because it is no valid transaction
-   (butlast)
-   ;puts the list of vectors and puts it into the correct hashmap
-   (map vector-to-hashmap)
-;  (#(doto % tap>))
-   (map csv-entry-to-ledger)
-   (map #(determine-money-category myconf %))
-   (map build-string-entry-for-ledger)
-   (reduce str)))
-
-
 (defn convert-csv-to-hashmap [csvfile myconf]
   (->>
    csvfile ; returns sequence of vectors
@@ -129,9 +110,7 @@
    (map vector-to-hashmap)
    (map csv-entry-to-ledger)
    (map #(determine-money-category myconf %))
-;   (map build-string-entry-for-ledger)
 
-  ; (reduce str)
    ))
 
 ;lein run /home/dave/Downloads/Transactions_300_20251130_155558.csv" > ./output

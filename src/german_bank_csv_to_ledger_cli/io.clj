@@ -54,7 +54,7 @@
                         [:h2 "Details"]
                         [:p "Date: " [:span {:id "pDate"}]]
                         [:p "Payee: " [:input {:type "text" :id "pPayee" :class "inputtext"}]]
-                        [:p "Debit: " [:input {:type "text" :id "pDebit" :class "inputtext"}]]
+                        [:p "Account: " [:input {:type "text" :id "pDebit" :class "inputtext"}]]
                         [:button {:id "savePopup" :class "button"} "Save"]]]
                       [:div {:id "layout"}
                        [:button {:id "copybutton" :class "button"} "Copy to clipboard"]
