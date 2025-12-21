@@ -18,7 +18,7 @@ browse localhost:3002
 ## Usage
 
     - change .conf.edn to conf.edn
-      or link your existing by e.g. ln -s /home/dave/Dropbox/org/conf.edn ./src/german_bank_csv_to_ledger_cli/conf.edn  
+      or link your existing by e.g. ln -s $HOME/Dropbox/org/conf.edn ./src/german_bank_csv_to_ledger_cli/conf.edn  
     - adapt the config to your needs
     - install leiningen
     - lein test to check, whether everything is running correctly
@@ -59,7 +59,7 @@ browse localhost:3002
 - delete the link DONE
 - fix Dockerfile DONE
 - create bigger popup
-- Popup Naming
+- Popup Naming 
 - Improve popup: better naming and longer input fields
 - Check, whether the current browser suggestions are enough
 - update readme

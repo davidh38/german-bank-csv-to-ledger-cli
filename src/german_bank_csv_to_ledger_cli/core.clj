@@ -22,6 +22,14 @@
     :else
     (:Beneficiary-Originator entry)))
 
+(comment
+  (determine-recipient
+   {:Debit "-5.5", :Payment-Details "1046952725146/. Rheinbahn AG, Ihr Einkauf bei Rheinbahn AG",
+    :Booking-date "12/17/2025", :Currency "EUR",
+    :Number-of-cheques , :BIC , :Value-date "12/17/2025",
+    :Beneficiary-Originator "PayPal Europe S.a.r.l. et Cie S.C.A",
+    :Transaction-Type "SEPA Direct Debit"}))
+
 (defn determine-money-category
   "if the string starts with a key the value should be evaluated"
   [conf_map ledger-entry]
@@ -106,7 +114,6 @@
    (map csv-entry-to-ledger)
    (map #(determine-money-category myconf %))
    (map build-string-entry-for-ledger)
-
    (reduce str)))
 
 

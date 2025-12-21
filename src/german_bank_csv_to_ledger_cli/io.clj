@@ -117,8 +117,7 @@
  ; (.exec (Runtime/getRuntime) "chromium-browser http://localhost:3002")
   )
 
-
-;
+(comment
 ;fetch("/mytest", {
 ;  method: "POST",
 ;  headers: {
@@ -133,22 +132,4 @@
 ;.then(console.log);
 ;
 ;main
-
-(comment
-  (+ 1 1)
-  (+ 2 1))
-
-(comment
-  (defn -main [args]
-    (->>
-     (getdata args)
-     (map core/build-string-entry-for-ledger)
-     (reduce str)
-     (println))))
-;(-main "/home/dave/Downloads/Transactions_300_8126039_00_20251121_171738.csv")
-
-; 
-;I need an export side for the strings
-; append to
-;I need an table side
-;  "denn.s Biomarkt"                                          "Expenses:Food:Supermarket"
+)
