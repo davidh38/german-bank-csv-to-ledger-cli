@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: sans-serif;
-}
-
 tr:hover td {
     background-color: #052360;
     /* highlight entire row */
@@ -23,46 +18,11 @@ tr:hover td {
     align-self: flex-end;
     padding: 15px;
     background: rgb(13, 217, 193);
-    color: rgb(13, 4, 56);
-}
-
-.myclass {
-    background: red;
-    border: 2px;
-    border-color: black;
-    border-style: solid;
-    padding: 100px;
-
-}
-
-/* hell/dunkel = alternating row colors */
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-    /* light */
-}
-
-tr:nth-child(odd) {
-    background-color: #ffffff;
-    /* white */
-}
-
-th {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: left;
 }
 
 td {
     padding: 10px;
     border: 1px solid #055180;
-}
-
-#mytable {
-    display: flex;
-    border-collapse: collapse;
-    font-family: sans-serif;
-
 }
 
 .parent {
@@ -72,31 +32,16 @@ td {
     /* optional */
 }
 
-.myclass2 {
-    width: 200px;
-    height: 250px;
-    background: blue;
-}
-
-.myclass3 {
-    width: 200px;
-    height: 200px;
-    background: green;
-}
-
-
 .popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.25);
-    /* lighter overlay */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 250px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 9999;
 }
 
 /* Popup box */
@@ -104,7 +49,7 @@ td {
     background: #ffffff;
     /* bright background */
     padding: 40px;
-    width: 500px;
+    width: 1200px;
     border-radius: 12px;
     /* softer corners */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -200,4 +145,8 @@ td {
 .fail {
     color: #ef4444;
     font-weight: 600;
+}
+
+.inputtext {
+width: 600px;
 }

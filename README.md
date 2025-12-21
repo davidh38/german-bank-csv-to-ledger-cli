@@ -58,7 +58,7 @@ browse localhost:3002
 - improve UI -> more snappy (flex maybe) DONE
 - delete the link DONE
 - fix Dockerfile DONE
-- create bigger popup
+- create bigger popup 
 - Popup Naming 
 - Improve popup: better naming and longer input fields
 - Check, whether the current browser suggestions are enough
@@ -67,6 +67,7 @@ browse localhost:3002
 - sort function or filter by uncategorized
 - check brunos improvements: use destructering
 - no release / package it
+- get the filename of the new transactions
 - suggestion: filter and search bar
 - suggestion: use ornament
 - suggestion: use lambda island
@@ -74,7 +75,6 @@ browse localhost:3002
 - suggestion: switch to tailwind or ornament
 - suggestion: download new transactions automatically
 - suggestion: test docker usage with config file
-- get the filename of the new transactions
 
 
 ## Summary

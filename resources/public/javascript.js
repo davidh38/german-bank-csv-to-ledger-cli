@@ -23,8 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("pDate").textContent = date;
             document.getElementById("pPayee").value = payee;
             document.getElementById("pDebit").value = debit;
-            document.getElementById("pCredit").textContent = amount;
-
             document.getElementById("popup").style.display = "flex";
         });
     });
