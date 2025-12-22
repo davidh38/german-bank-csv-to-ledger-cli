@@ -4,23 +4,29 @@
 (defn invert-string-amount [amount]
   (if (str/starts-with? amount "-") (subs amount 1) (str "-" amount)))
 
+(comment
+ (invert-string-amount "-12") 
+  )
+
 (defn format-amount-to-euro [amount]
   (->
    (str/replace amount "," "") ; for > 1000
    (str/replace "." ",")
    (str " EUR")))
 
+
 (defn determine-recipient
   "in nase of paypal as auftraggeber or empty auftraggeber return betreff entry as recipient
      in all other cases return auftraggeber as recipient"
   [entry]
+  (let [beneficiary (:Beneficiary-Originator entry)]
   (cond
-    (= (:Beneficiary-Originator entry) "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
-    (= (:Beneficiary-Originator entry) "PayPal (Europe) S.a r.l. et Cie, S. C.A.") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
-    (= (str/lower-case  (:Beneficiary-Originator entry)) "abrechnung karte") (:Payment-Details entry)
-    (= (:Beneficiary-Originator entry) "") (:Payment-Details entry)
+    (= (str/lower-case  beneficiary) "abrechnung karte") (:Payment-Details entry)
+    (= beneficiary "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
+    (= beneficiary "PayPal (Europe) S.a r.l. et Cie, S. C.A.") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
+    (= beneficiary "") (:Payment-Details entry)
     :else
-    (:Beneficiary-Originator entry)))
+    beneficiary)))
 
 (comment
   (determine-recipient
@@ -40,6 +46,9 @@
         (first
          (filter
           #(str/starts-with? (:payee ledger-entry) %) (keys conf_map))) "Uncategorized")))
+(comment
+(str/starts-with? "test222" "test")
+)
 
 (defn determine-debit-or-credit-amount [ledger-entry]
   (if (not= (:debit_amount ledger-entry) "")
@@ -130,7 +139,6 @@
    (map csv-entry-to-ledger)
    (map #(determine-money-category myconf %))
 ;   (map build-string-entry-for-ledger)
-
    ))
 
 ;lein run /home/dave/Downloads/Transactions_300_20251130_155558.csv" > ./output
