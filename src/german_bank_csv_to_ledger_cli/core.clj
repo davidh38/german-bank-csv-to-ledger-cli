@@ -5,8 +5,7 @@
   (if (str/starts-with? amount "-") (subs amount 1) (str "-" amount)))
 
 (comment
- (invert-string-amount "-12") 
-  )
+  (invert-string-amount "-12"))
 
 (defn format-amount-to-euro [amount]
   (->
@@ -20,13 +19,13 @@
      in all other cases return auftraggeber as recipient"
   [entry]
   (let [beneficiary (:Beneficiary-Originator entry)]
-  (cond
-    (= (str/lower-case  beneficiary) "abrechnung karte") (:Payment-Details entry)
-    (= beneficiary "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
-    (= beneficiary "PayPal (Europe) S.a r.l. et Cie, S. C.A.") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
-    (= beneficiary "") (:Payment-Details entry)
-    :else
-    beneficiary)))
+    (cond
+      (= (str/lower-case  beneficiary) "abrechnung karte") (:Payment-Details entry)
+      (= beneficiary "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
+      (= beneficiary "PayPal (Europe) S.a r.l. et Cie, S. C.A.") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
+      (= beneficiary "") (:Payment-Details entry)
+      :else
+      beneficiary)))
 
 (comment
   (determine-recipient
@@ -47,8 +46,7 @@
          (filter
           #(str/starts-with? (:payee ledger-entry) %) (keys conf_map))) "Uncategorized")))
 (comment
-(str/starts-with? "test222" "test")
-)
+  (str/starts-with? "test222" "test"))
 
 (defn determine-debit-or-credit-amount [ledger-entry]
   (if (not= (:debit_amount ledger-entry) "")

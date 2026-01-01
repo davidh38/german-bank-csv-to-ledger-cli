@@ -46,6 +46,7 @@
 (defn header [data] (html5
                      [:head]
                      [:link {:rel "stylesheet" :href "styles.css"}]
+                     [:script {:src "/js/main.js" :defer true}]
                      [:script {:src "javascript.js" :defer true}]
                      [:body
                       [:div {:id "popup" :class "popup"}
