@@ -53,8 +53,8 @@
                        [:div {:class "popup-content"}
                         [:span {:id "close" :class "close"} "&times"]
                         [:h2 "Details"]
-                        [:p "Date: " [:span {:id "pDate"}]]
-                        [:p "Payee: " [:input {:type "text" :id "pPayee" :class "inputtext"}]]
+                        [:p "Date:__ " [:span {:id "pDate"}]]
+                        [:p "Payee__:" [:input {:type "text" :id "pPayee" :class "inputtext"}]]
                         [:p "Account: " [:input {:type "text" :id "pDebit" :class "inputtext"}]]
                         [:button {:id "savePopup" :class "button"} "Save"]]]
                       [:div {:id "layout"}
@@ -132,4 +132,4 @@
 ;.then(console.log);
 ;
 ;main
-)
+  )

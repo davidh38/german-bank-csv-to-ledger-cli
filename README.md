@@ -61,6 +61,9 @@ browse localhost:3002
 - create bigger popup DONE
 - Popup Naming DONE
 - Improve popup: longer input fields DONE
+- align nice on popup
+- create a tag
+- try testing in github actions
 - Check, whether the current browser suggestions are enough
 - code review with a.i
 - sort function or filter by uncategorized
