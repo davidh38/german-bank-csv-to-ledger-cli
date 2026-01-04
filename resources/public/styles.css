@@ -32,31 +32,46 @@ td {
     /* optional */
 }
 
-.popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 800px;
-  height: 300px;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 9999;
+.row {
+    display: flex;
+    align-items: center;
 }
 
-/* Popup box */
+.row label {
+    width: 120px;
+    /* fixed label column */
+    white-space: nowrap;
+    /* never wrap */
+    text-align: right;
+    /* line labels up by the colon */
+    padding-right: 10px;
+    /* spacing before input */
+}
+
+.row span {
+    flex: 1;
+}
+
+.row input {
+    flex: 1;
+}
+
+.popup {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.25);
+}
+
 .popup-content {
-    background: #ffffff;
-    /* bright background */
-    padding: 40px;
-    width: 1200px;
-    border-radius: 12px;
-    /* softer corners */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    font-family: sans-serif;
-    color: #222;
-    /* dark readable text */
-    line-height: 1.5;
+    background: #fff;
+    padding: 16px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 /* Close button */
@@ -148,9 +163,9 @@ td {
 }
 
 .inputtext {
-width: 600px;
-font-size: 14px;
-padding: 10px 14px;
+    width: 600px;
+    font-size: 14px;
+    padding: 10px 14px;
 }
 
 * {
@@ -188,15 +203,15 @@ td {
 }
 
 .popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 800px;
-  height: 300px;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 9999;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 9999;
 }
 
 /* Popup box */
@@ -303,5 +318,5 @@ td {
 }
 
 #savePopup {
-margin: 5px;
+    margin: 5px;
 }

@@ -1,3 +1,10 @@
 {
-    "editor.autoSurround": "never"
+    "[clojure]": {
+        "editor.autoSurround": "never",
+        "editor.autoClosingBrackets": "never"
+    },
+    "vim.handleKeys": {
+        "<C-p>": false
+    },
+    "vim.useCtrlKeys": false
 }

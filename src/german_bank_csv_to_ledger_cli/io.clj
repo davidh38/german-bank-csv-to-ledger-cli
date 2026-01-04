@@ -53,9 +53,15 @@
                        [:div {:class "popup-content"}
                         [:span {:id "close" :class "close"} "&times"]
                         [:h2 "Details"]
-                        [:p "Date:__ " [:span {:id "pDate"}]]
-                        [:p "Payee__:" [:input {:type "text" :id "pPayee" :class "inputtext"}]]
-                        [:p "Account: " [:input {:type "text" :id "pDebit" :class "inputtext"}]]
+                        [:div {:class "row"}
+                         [:label "Date:"]
+                         [:span {:id "pDate"}]]
+                        [:div {:class "row"}
+                         [:label "Payee:"]
+                         [:input {:type "text" :id "pPayee" :class "inputtext"}]]
+                        [:div {:class "row"}
+                         [:label "Account:"]
+                         [:input {:type "text" :id "pDebit" :class "inputtext"}]]
                         [:button {:id "savePopup" :class "button"} "Save"]]]
                       [:div {:id "layout"}
                        [:button {:id "copybutton" :class "button"} "Copy to clipboard"]
