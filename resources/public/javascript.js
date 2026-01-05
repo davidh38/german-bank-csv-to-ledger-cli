@@ -8,6 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
         await navigator.clipboard.writeText(text);
     });
 
+
+    document.addEventListener("keydown", (e) => {
+        const popup = document.getElementById("popup");
+        if (!popup) return;  // Safety check: popup element must exist
+        
+        if (e.key === "Enter" && popup.style.display !== "none") {
+            e.preventDefault();
+            console.log("Enter pressed while popup is visible");
+            // Trigger save action
+            document.getElementById("savePopup").click();
+        }
+    });
+
     document.querySelectorAll("#mytable table tr").forEach((row, index) => {
         // Skip the header row
         if (index === 0) return;
@@ -30,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close popup
     document.getElementById("close").onclick = () =>
         document.getElementById("popup").style.display = "none";
+
+
 
 
     document.getElementById("savePopup").onclick = () => {
