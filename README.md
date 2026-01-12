@@ -63,10 +63,10 @@ browse localhost:3002
 - Improve popup: longer input fields DONE
 - align nice on popup DONE
 - create a tag DONE
+- check bug Transactions_300_8126039_00_20260111_150825 -> stays uncategorized DONE
 - try testing in github actions
 - Check, whether the current browser suggestions are enough - yes for now DONE
 - code review with a.i
-- check bug Transactions_300_8126039_00_20260111_150825 -> stays uncategorized
 - sort function or filter by uncategorized
 - check brunos improvements: use destructering
 - no release / package it
