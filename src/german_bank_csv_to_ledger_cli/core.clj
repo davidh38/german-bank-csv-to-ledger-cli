@@ -1,17 +1,25 @@
 (ns german-bank-csv-to-ledger-cli.core
   (:require [clojure.string :as str]))
 
+
 (defn invert-string-amount [amount]
-  (if (str/starts-with? amount "-") (subs amount 1) (str "-" amount)))
+  (str (- (Double/parseDouble amount))))
 
 (comment
-  (invert-string-amount "-12"))
+  (invert-string-amount "-12.5")
+  (invert-string-amount "12.5"))
+
 
 (defn format-amount-to-euro [amount]
   (->
-   (str/replace amount "," "") ; for > 1000
+   amount
+   (str/replace  "," "") ; for > 1000
    (str/replace "." ",")
    (str " EUR")))
+
+(comment
+  "" " english notation -> german" ""
+  (format-amount-to-euro "10,000.50"))
 
 
 (defn determine-recipient
@@ -22,7 +30,7 @@
     (cond
       (= (str/lower-case  beneficiary) "abrechnung karte") (:Payment-Details entry)
       (= beneficiary "PayPal Europe S.a.r.l. et Cie S.C.A") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
-      (= beneficiary "PayPal (Europe) S.a r.l. et Cie, S. C.A.") (str/replace (:Payment-Details entry) #"^\d+" "") ;delete preceding unique numbers, if paypal
+      (= beneficiary "PayPal (Europe) S.a r.l. et Cie, S. C.A.") (str/replace (:Payment-Details entry) #"^\d+ ?" "") ;delete preceding unique numbers and space, because the comparing string is trimmed, if paypal
       (= beneficiary "") (:Payment-Details entry)
       :else
       beneficiary)))
