@@ -79,7 +79,7 @@
 
 
 
-(defn getdata [file-path]
+(defn get-data [file-path]
   (core/convert-csv-to-hashmap
    (take-csv file-path)
    (slurp-edn "./src/german_bank_csv_to_ledger_cli/conf.edn")))
@@ -89,7 +89,7 @@
     (case [(:request-method req) (:uri req)]
       [:get "/"] {:status 200
                   :headers {"Content-Type" "text/html"}
-                  :body (header (getdata file-path))}
+                  :body (header (get-data file-path))}
       [:get "/copy"] {:status 200
                       :headers {"Content-Type" "text/plain"}
                       :body (core/convert-csv-to-string (take-csv file-path)
@@ -123,6 +123,10 @@
   )
 
 (comment
+  (core/convert-csv-to-string (take-csv "/home/dave/Downloads/Transactions_300_8126039_00_20260207_151853.csv")
+                              (slurp-edn "./src/german_bank_csv_to_ledger_cli/conf.edn"))
+
+
 ;fetch("/mytest", {
 ;  method: "POST",
 ;  headers: {

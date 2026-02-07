@@ -3,12 +3,13 @@
 
 
 (defn invert-string-amount [amount]
-  (str (- (Double/parseDouble amount))))
+;  (str (- (Double/parseDouble amount))))
+  (if (str/starts-with? amount "-") (subs amount 1) (str "-" amount)))
 
 (comment
   (invert-string-amount "-12.5")
-  (invert-string-amount "12.5"))
-
+  (invert-string-amount "12.5")
+  (invert-string-amount   "2,359.65"))
 
 (defn format-amount-to-euro [amount]
   (->
@@ -111,7 +112,7 @@
         day (nth date-parts 1)
         formatted-date (str year "/" month "/" day)]
     (str formatted-date " * " (:payee entry) "\n"
-         "\t" (:debit_account entry) "  " (format-amount-to-euro (invert-string-amount (determine-debit-or-credit-amount entry))) "\n"
+         "\t" (:debit_account entry) "  " (invert-string-amount (format-amount-to-euro (determine-debit-or-credit-amount entry))) "\n"
          "\tAssets:Bank:Checking  "    (format-amount-to-euro (determine-debit-or-credit-amount entry))  "\n")))
 
 (defn convert-csv-to-string [csvfile myconf]
